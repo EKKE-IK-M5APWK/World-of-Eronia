@@ -1,2 +1,1 @@
-# Szakdolgozat
-EKE PTI Szakdolgozatom
+# Game Development in Unity
