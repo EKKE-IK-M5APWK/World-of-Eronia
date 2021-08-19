@@ -1,0 +1,2 @@
+# Szakdolgozat
+EKE PTI Szakdolgozatom
