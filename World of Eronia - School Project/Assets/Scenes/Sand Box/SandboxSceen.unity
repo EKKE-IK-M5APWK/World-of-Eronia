@@ -399,45 +399,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.38300002, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &586406581 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4204049307689375263, guid: 2b430aca160e4894aa94fbe434a5d3da, type: 3}
-  m_PrefabInstance: {fileID: 4642607547952662502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &586406582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586406581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686ede23c88d10246ba7d16f88cb4220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!195 &586406583
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586406581}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.2
-  m_Speed: 12
-  m_Acceleration: 20
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!4 &586406584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7252199273447393830, guid: 2b430aca160e4894aa94fbe434a5d3da, type: 3}
@@ -1200,15 +1161,15 @@ PrefabInstance:
       objectReference: {fileID: 586406584}
     - target: {fileID: 1112883083907205896, guid: 4ab89b212e8e02c4ca7bbfce20a45ac8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.81
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 1112883083907205896, guid: 4ab89b212e8e02c4ca7bbfce20a45ac8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.84
+      value: 10.55
       objectReference: {fileID: 0}
     - target: {fileID: 1112883083907205896, guid: 4ab89b212e8e02c4ca7bbfce20a45ac8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.64
+      value: 8.76
       objectReference: {fileID: 0}
     - target: {fileID: 1112883083907205896, guid: 4ab89b212e8e02c4ca7bbfce20a45ac8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1257,7 +1218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252199273447393830, guid: 2b430aca160e4894aa94fbe434a5d3da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7252199273447393830, guid: 2b430aca160e4894aa94fbe434a5d3da, type: 3}
       propertyPath: m_LocalPosition.z
