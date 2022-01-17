@@ -9,7 +9,7 @@ namespace WorldOfEronia.Control
         void Update()
         {
             if (InteractWithCombat()) { return; }
-            if (InteractWithMovement()) { return; };
+            if (InteractWithMovement()) { return; }
         }
         private bool InteractWithCombat()
         {
@@ -33,7 +33,7 @@ namespace WorldOfEronia.Control
             bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
             if (hasHit)
             {
-                if (Input.GetMouseButton(0)) GetComponent<Move>().MoveTo(hit.point);
+                if (Input.GetMouseButton(0)) GetComponent<Move>().StartMoveAction(hit.point);
                 return true;
             }
             return false;
