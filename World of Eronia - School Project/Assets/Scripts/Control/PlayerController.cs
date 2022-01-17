@@ -1,4 +1,5 @@
 using WorldOfEronia.Movement;
+using WorldOfEronia.Combat;
 using UnityEngine;
 
 namespace WorldOfEronia.Control
@@ -7,21 +8,40 @@ namespace WorldOfEronia.Control
     {
         void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (InteractWithCombat()) { return; }
+            if (InteractWithMovement()) { return; };
+        }
+        private bool InteractWithCombat()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            foreach (RaycastHit hit in hits)
             {
-                MoveToCursor();
+                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                if (target == null) continue;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    GetComponent<Fighter>().Attack(target);
+                }
+                return true;
             }
+            return false;
         }
 
-        private void MoveToCursor()
+        private bool InteractWithMovement()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            bool hasHit = Physics.Raycast(ray, out hit);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
             if (hasHit)
             {
-                GetComponent<Move>().MoveTo(hit.point);
+                if (Input.GetMouseButton(0)) GetComponent<Move>().MoveTo(hit.point);
+                return true;
             }
+            return false;
+        }
+
+        private static Ray GetMouseRay()
+        {
+            return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
     }
 }
