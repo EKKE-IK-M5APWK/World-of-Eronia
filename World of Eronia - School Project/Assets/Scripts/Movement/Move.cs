@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WorldOfEronia.Combat;
+using WorldOfEronia.Core;
 using UnityEngine.AI;
 
 namespace WorldOfEronia.Movement
 {
-    public class Move : MonoBehaviour
+    public class Move : MonoBehaviour, IAction
     {
         [SerializeField] Transform target;
         NavMeshAgent navMeshAgent;
@@ -21,7 +22,7 @@ namespace WorldOfEronia.Movement
 
         public void StartMoveAction(Vector3 destination)
         {
-            GetComponent<Fighter>().Cancel();
+            GetComponent<ActionScheduler>().startAction(this);
             MoveTo(destination);
         }
 
@@ -31,7 +32,7 @@ namespace WorldOfEronia.Movement
             navMeshAgent.isStopped = false;
         }
 
-        public void Stop()
+        public void Cancel()
         {
             navMeshAgent.isStopped = true;
         }

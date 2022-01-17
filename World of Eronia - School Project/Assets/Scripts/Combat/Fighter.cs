@@ -1,9 +1,10 @@
 using UnityEngine;
 using WorldOfEronia.Movement;
+using WorldOfEronia.Core;
 namespace WorldOfEronia.Combat
 {
 
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
         Transform target;
@@ -16,7 +17,7 @@ namespace WorldOfEronia.Combat
             }
             else
             {
-                GetComponent<Move>().Stop();
+                GetComponent<Move>().Cancel();
             }
         }
 
@@ -27,6 +28,7 @@ namespace WorldOfEronia.Combat
 
         public void Attack(CombatTarget combatTarget)
         {
+            GetComponent<ActionScheduler>().startAction(this);
             target = combatTarget.transform;
         }
         public void Cancel()
