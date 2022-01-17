@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
+namespace WorldOfEronia.Core
 {
-    [SerializeField]
-    Transform target;
-    // Start is called before the first frame update
-
-
-    // Update is called once per frame
-    void LateUpdate()
+    public class FollowCamera : MonoBehaviour
     {
-        transform.position = target.position;
+        [SerializeField]
+        Transform target;
+        // Start is called before the first frame update
+
+
+        // Update is called once per frame
+        void LateUpdate()
+        {
+            transform.position = target.position;
+        }
     }
 }
+

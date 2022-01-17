@@ -1,23 +1,27 @@
+using WorldOfEronia.Movement;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace WorldOfEronia.Control
 {
-    void Update()
+    public class PlayerController : MonoBehaviour
     {
-        if (Input.GetMouseButton(0))
+        void Update()
         {
-            MoveToCursor();
+            if (Input.GetMouseButton(0))
+            {
+                MoveToCursor();
+            }
         }
-    }
 
-    private void MoveToCursor()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        bool hasHit = Physics.Raycast(ray, out hit);
-        if (hasHit)
+        private void MoveToCursor()
         {
-            GetComponent<Move>().MoveTo(hit.point);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            bool hasHit = Physics.Raycast(ray, out hit);
+            if (hasHit)
+            {
+                GetComponent<Move>().MoveTo(hit.point);
+            }
         }
     }
 }
