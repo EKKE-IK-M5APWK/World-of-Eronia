@@ -23,16 +23,16 @@ namespace WorldOfEronia.Combat
             else
             {
                 GetComponent<Move>().Cancel();
+
                 AttackBehaviour();
             }
         }
-
         private void AttackBehaviour()
         {
+            transform.LookAt(target.transform);
             if(timeSinceLastAttack > timeBetweenAttacks) {
                 GetComponent<Animator>().SetTrigger("attackTrigger");
                 timeSinceLastAttack = 0;
-               
             }
             
         }
@@ -51,6 +51,13 @@ namespace WorldOfEronia.Combat
         {
             GetComponent<ActionScheduler>().startAction(this);
             target = combatTarget.GetComponent<Health>();;
+        }
+        public bool CanAttackTarget(CombatTarget combatTarget){
+            if(combatTarget == null){
+                return false;
+            }
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return targetToTest != null && !targetToTest.IsDead();
         }
         public void Cancel()
         {
