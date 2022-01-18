@@ -18,7 +18,13 @@ namespace WorldOfEronia.Combat
             else
             {
                 GetComponent<Move>().Cancel();
+                AttackBehaviour();
             }
+        }
+
+        private void AttackBehaviour()
+        {
+            GetComponent<Animator>().SetTrigger("attackTrigger");
         }
 
         private bool GetIsInRange()
@@ -34,6 +40,12 @@ namespace WorldOfEronia.Combat
         public void Cancel()
         {
             target = null;
+        }
+
+        // Animation Event
+        void Hit() 
+        {
+            
         }
     }
 }
