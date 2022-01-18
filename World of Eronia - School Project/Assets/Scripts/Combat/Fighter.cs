@@ -7,9 +7,12 @@ namespace WorldOfEronia.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
+        [SerializeField] float timeBetweenAttacks = 1f;
         Transform target;
+        float timeSinceLastAttack = 0;
         private void Update()
         {
+            timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
             if (!GetIsInRange())
             {
@@ -24,7 +27,11 @@ namespace WorldOfEronia.Combat
 
         private void AttackBehaviour()
         {
-            GetComponent<Animator>().SetTrigger("attackTrigger");
+            if(timeSinceLastAttack > timeBetweenAttacks) {
+                GetComponent<Animator>().SetTrigger("attackTrigger");
+                timeSinceLastAttack = 0;
+            }
+            
         }
 
         private bool GetIsInRange()
@@ -42,10 +49,10 @@ namespace WorldOfEronia.Combat
             target = null;
         }
 
-        // Animation Event
+        
         void Hit() 
         {
-            
+            // Animation Event
         }
     }
 }
