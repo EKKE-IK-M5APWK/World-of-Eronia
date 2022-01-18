@@ -8,6 +8,7 @@ namespace WorldOfEronia.Combat
     {
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float weaponDamage = 5f;
         Transform target;
         float timeSinceLastAttack = 0;
         private void Update()
@@ -30,10 +31,17 @@ namespace WorldOfEronia.Combat
             if(timeSinceLastAttack > timeBetweenAttacks) {
                 GetComponent<Animator>().SetTrigger("attackTrigger");
                 timeSinceLastAttack = 0;
+               
             }
             
         }
 
+        // Animation Event
+        void Hit() 
+        {
+            Health healthComponent = target.GetComponent<Health>();
+            healthComponent.TakeDamage(weaponDamage);
+        }
         private bool GetIsInRange()
         {
             return Vector3.Distance(transform.position, target.position) < weaponRange;
@@ -50,9 +58,5 @@ namespace WorldOfEronia.Combat
         }
 
         
-        void Hit() 
-        {
-            // Animation Event
-        }
     }
 }
