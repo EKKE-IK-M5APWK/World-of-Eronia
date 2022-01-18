@@ -30,16 +30,23 @@ namespace WorldOfEronia.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if(timeSinceLastAttack > timeBetweenAttacks) {
-                GetComponent<Animator>().SetTrigger("attackTrigger");
+            if(timeSinceLastAttack > timeBetweenAttacks)
+            {
+                AttackTrigger();
                 timeSinceLastAttack = 0;
             }
-            
+        }
+
+        private void AttackTrigger()
+        {
+            GetComponent<Animator>().ResetTrigger("attackTrigger");
+            GetComponent<Animator>().SetTrigger("attackTrigger");
         }
 
         // Animation Event
         void Hit() 
         {   
+            if(target == null) return;
             target.TakeDamage(weaponDamage);
         }
         private bool GetIsInRange()
@@ -61,11 +68,16 @@ namespace WorldOfEronia.Combat
         }
         public void Cancel()
         {
-            GetComponent<Animator>().SetTrigger("stopAttackTrigger");
+            StopAttackTrigger();
             target = null;
 
         }
 
-        
+        private void StopAttackTrigger()
+        {
+            GetComponent<Animator>().ResetTrigger("stopAttackTrigger");
+            GetComponent<Animator>().SetTrigger("stopAttackTrigger");
+        }
+
     }
 }
