@@ -36,6 +36,14 @@ namespace WorldOfEronia.Control
         {
             return Vector3.Distance(player.transform.position, transform.position) < catchDistance;
         }
+
+        /// <summary>
+        /// Callback to draw gizmos only if the object is selected.
+        /// </summary>
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.yellow;
+        }
     }
 }
 
