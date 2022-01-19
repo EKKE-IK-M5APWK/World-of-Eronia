@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7156413487468441685, guid: 54314722e8eb32848a6b2550fc09f23d, type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54314722e8eb32848a6b2550fc09f23d, type: 3}
 --- !u!1 &6078929623773163940 stripped
@@ -109,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babd31d5949ad5247941c96f4bc959e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
+  catchDistance: 5
 --- !u!1001 &3393030800166862411
 PrefabInstance:
   m_ObjectHideFlags: 0

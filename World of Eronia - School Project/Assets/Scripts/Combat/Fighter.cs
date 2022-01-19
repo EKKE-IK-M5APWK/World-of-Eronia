@@ -23,7 +23,6 @@ namespace WorldOfEronia.Combat
             else
             {
                 GetComponent<Move>().Cancel();
-
                 AttackBehaviour();
             }
         }
@@ -54,12 +53,12 @@ namespace WorldOfEronia.Combat
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().startAction(this);
             target = combatTarget.GetComponent<Health>(); ;
         }
-        public bool CanAttackTarget(CombatTarget combatTarget)
+        public bool CanAttackTarget(GameObject combatTarget)
         {
             if (combatTarget == null)
             {
