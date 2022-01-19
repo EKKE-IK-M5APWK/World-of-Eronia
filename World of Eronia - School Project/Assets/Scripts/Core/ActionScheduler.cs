@@ -15,5 +15,9 @@ namespace WorldOfEronia.Core
             }
             currentAction = action;
         }
+        public void CancelCurrentAction()
+        {
+            startAction(null);
+        }
     }
 }

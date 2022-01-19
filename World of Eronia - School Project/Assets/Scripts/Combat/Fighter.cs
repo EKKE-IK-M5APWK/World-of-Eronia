@@ -10,12 +10,12 @@ namespace WorldOfEronia.Combat
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 5f;
         Health target;
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
-            if(target.IsDead()) return;
+            if (target.IsDead()) return;
             if (!GetIsInRange())
             {
                 GetComponent<Move>().MoveTo(target.transform.position);
@@ -23,14 +23,13 @@ namespace WorldOfEronia.Combat
             else
             {
                 GetComponent<Move>().Cancel();
-
                 AttackBehaviour();
             }
         }
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if(timeSinceLastAttack > timeBetweenAttacks)
+            if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 AttackTrigger();
                 timeSinceLastAttack = 0;
@@ -44,9 +43,9 @@ namespace WorldOfEronia.Combat
         }
 
         // Animation Event
-        void Hit() 
-        {   
-            if(target == null) return;
+        void Hit()
+        {
+            if (target == null) return;
             target.TakeDamage(weaponDamage);
         }
         private bool GetIsInRange()
@@ -54,13 +53,15 @@ namespace WorldOfEronia.Combat
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().startAction(this);
-            target = combatTarget.GetComponent<Health>();;
+            target = combatTarget.GetComponent<Health>(); ;
         }
-        public bool CanAttackTarget(CombatTarget combatTarget){
-            if(combatTarget == null){
+        public bool CanAttackTarget(GameObject combatTarget)
+        {
+            if (combatTarget == null)
+            {
                 return false;
             }
             Health targetToTest = combatTarget.GetComponent<Health>();

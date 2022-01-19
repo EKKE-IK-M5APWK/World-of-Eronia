@@ -1,13 +1,20 @@
 using WorldOfEronia.Movement;
 using WorldOfEronia.Combat;
+using WorldOfEronia.Core;
 using UnityEngine;
 
 namespace WorldOfEronia.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        Health health;
+        private void Start()
+        {
+            health = GetComponent<Health>();
+        }
         void Update()
         {
+            if (health.IsDead()) { return; }
             if (InteractWithCombat()) { return; }
             if (InteractWithMovement()) { return; }
         }
@@ -17,10 +24,12 @@ namespace WorldOfEronia.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (!GetComponent<Fighter>().CanAttackTarget(target)) continue;
-                if (Input.GetMouseButtonDown(0))
+                if (target == null) continue;
+
+                if (!GetComponent<Fighter>().CanAttackTarget(target.gameObject)) continue;
+                if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    GetComponent<Fighter>().Attack(target.gameObject);
                 }
                 return true;
             }
