@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using WorldOfEronia.Combat;
+using WorldOfEronia.Core;
 using UnityEngine;
 
 namespace WorldOfEronia.Control
@@ -9,14 +10,17 @@ namespace WorldOfEronia.Control
     {
         [SerializeField] float catchDistance = 5f;
         Fighter AI;
+        Health health;
         GameObject player;
         private void Start()
         {
             AI = GetComponent<Fighter>();
+            health = GetComponent<Health>();
             player = GameObject.FindWithTag("Player");
         }
         private void Update()
         {
+            if (health.IsDead()) { return; }
             if (InAttackRangeOfPlayer() && AI.CanAttackTarget(player))
             {
                 // Debug.Log(gameObject.name + " will move towards the player. Position:" + gameObject.transform.position);

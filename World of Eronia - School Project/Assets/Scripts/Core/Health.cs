@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WorldOfEronia.Combat
+namespace WorldOfEronia.Core
 {
     public class Health : MonoBehaviour
     {
@@ -24,6 +24,7 @@ namespace WorldOfEronia.Combat
             if (isDead) return;
             isDead = true;
             GetComponent<Animator>().SetTrigger("deathTrigger");
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
     }
 }

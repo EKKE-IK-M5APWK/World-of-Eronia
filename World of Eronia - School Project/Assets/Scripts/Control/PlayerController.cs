@@ -1,13 +1,20 @@
 using WorldOfEronia.Movement;
 using WorldOfEronia.Combat;
+using WorldOfEronia.Core;
 using UnityEngine;
 
 namespace WorldOfEronia.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        Health health;
+        private void Start()
+        {
+            health = GetComponent<Health>();
+        }
         void Update()
         {
+            if (health.IsDead()) { return; }
             if (InteractWithCombat()) { return; }
             if (InteractWithMovement()) { return; }
         }

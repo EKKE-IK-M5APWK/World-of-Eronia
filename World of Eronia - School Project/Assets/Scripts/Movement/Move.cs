@@ -10,13 +10,16 @@ namespace WorldOfEronia.Movement
     public class Move : MonoBehaviour, IAction
     {
         [SerializeField] Transform target;
+        Health health;
         NavMeshAgent navMeshAgent;
         private void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            health = GetComponent<Health>();
         }
         void Update()
         {
+            navMeshAgent.enabled = !health.IsDead();
             UpdateAnimator();
         }
 
