@@ -15,7 +15,7 @@ namespace WorldOfEronia.Combat
         {
             timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
-            if(target.IsDead()) return;
+            if (target.IsDead()) return;
             if (!GetIsInRange())
             {
                 GetComponent<Move>().MoveTo(target.transform.position);
@@ -30,7 +30,7 @@ namespace WorldOfEronia.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if(timeSinceLastAttack > timeBetweenAttacks)
+            if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 AttackTrigger();
                 timeSinceLastAttack = 0;
@@ -44,9 +44,9 @@ namespace WorldOfEronia.Combat
         }
 
         // Animation Event
-        void Hit() 
-        {   
-            if(target == null) return;
+        void Hit()
+        {
+            if (target == null) return;
             target.TakeDamage(weaponDamage);
         }
         private bool GetIsInRange()
@@ -57,10 +57,12 @@ namespace WorldOfEronia.Combat
         public void Attack(CombatTarget combatTarget)
         {
             GetComponent<ActionScheduler>().startAction(this);
-            target = combatTarget.GetComponent<Health>();;
+            target = combatTarget.GetComponent<Health>(); ;
         }
-        public bool CanAttackTarget(CombatTarget combatTarget){
-            if(combatTarget == null){
+        public bool CanAttackTarget(CombatTarget combatTarget)
+        {
+            if (combatTarget == null)
+            {
                 return false;
             }
             Health targetToTest = combatTarget.GetComponent<Health>();
